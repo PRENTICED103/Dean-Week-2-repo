@@ -32,10 +32,9 @@ pipeline {
   stage('Push') {
 
             steps {
-
                 sh '''
-                docker push -t prenticed103/flask-jenk .
-                docker push -t prenticed103/nginx-jenk ./nginx
+                docker push prenticed103/flask-jenk 
+                docker push prenticed103/nginx-jenk 
                 '''
             }
 
