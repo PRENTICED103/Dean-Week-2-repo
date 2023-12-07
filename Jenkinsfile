@@ -36,7 +36,7 @@ pipeline {
 
                 sh '''
                 docker run -d --name flask-app --network jenk-network flask-jenk       
-                docker run -d -p 80:80 --name network jenk-network nginx-jenk
+                docker run -d -p 80:80 --name Piers --network jenk-network nginx-jenk
                 '''
             }
 
