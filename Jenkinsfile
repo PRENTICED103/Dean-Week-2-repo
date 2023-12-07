@@ -23,20 +23,29 @@ pipeline {
             steps {
 
                 sh '''
-                docker build -t flask-jenk .
-                docker build -t nginx-jenk ./nginx
+                docker build -t prenticed103/flask-jenk .
+                docker build -t prenticed103/nginx-jenk ./nginx
                 '''
             }
 
         }
+  stage('Push') {
+
+            steps {
+
+                sh '''
+                docker push -t prenticed103/flask-jenk .
+                docker push -t prenticed103/nginx-jenk ./nginx
+                '''
+            }
 
         stage('Deploy') {
 
             steps {
 
                 sh '''
-                docker run -d --name flask-app --network jenk-network flask-jenk       
-                docker run -d -p 80:80 --name piers --network jenk-network nginx-jenk
+                docker run -d --name flask-app --network jenk-network prenticed103/flask-jenk       
+                docker run -d -p 80:80 --name piers --network jenk-network prenticed103/nginx-jenk
                 '''
             }
 
