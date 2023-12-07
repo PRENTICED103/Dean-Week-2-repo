@@ -9,7 +9,7 @@ pipeline {
             steps {
 
                 sh '''
-                'docker network create jenk-network || echo "Network Already Exist"
+                docker network create jenk-network || echo "Network Already Exist"
                 docker stop flask-app || echo "flask-app Not Running"
                 docker stop nginx || echo "nginx Not Running"
                 docker rm flask-app || echo "flask-app Not Running"
@@ -24,7 +24,7 @@ pipeline {
 
                 sh '''
                 docker build -t flask-jenk .
-                docker build -t nginx-jenk ./
+                docker build -t nginx-jenk ./nginx
                 '''
             }
 
