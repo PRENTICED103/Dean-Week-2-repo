@@ -29,7 +29,7 @@ pipeline {
             }
 
         }
-        
+
   stage('Push') {
 
             steps {
@@ -38,7 +38,7 @@ pipeline {
                 docker push prenticed103/nginx-jenk 
                 '''
             }
-
+  }
         stage('Deploy') {
 
             steps {
@@ -63,4 +63,3 @@ stage('Clean Up') {
     }
   }
     }
-}
