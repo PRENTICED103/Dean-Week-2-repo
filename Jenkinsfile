@@ -29,6 +29,7 @@ pipeline {
             }
 
         }
+        
   stage('Push') {
 
             steps {
@@ -57,16 +58,9 @@ stage('Clean Up') {
                 docker system prune -f
                 '''  
                             }
-       
+     
 
     }
   }
     }
-
-
-
-
-
-
-
 }
