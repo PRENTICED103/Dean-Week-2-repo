@@ -35,8 +35,8 @@ pipeline {
             steps {
                 sh '''
                 docker push prenticed103/flask-jenk:latest
-                docker push prenticed103/nginx-jenk:v$:{BUILD_NUMBER}
-                docker push prenticed103/flask-jenk:latest
+                docker push prenticed103/flask-jenk:v$:{BUILD_NUMBER}
+                docker push prenticed103/nginx-jenk:latest
                 docker push prenticed103/nginx-jenk:v$:{BUILD_NUMBER}
                 '''
             }
