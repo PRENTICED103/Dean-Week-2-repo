@@ -23,8 +23,8 @@ pipeline {
             steps {
 
                 sh '''
-                docker build -t prenticed103/flask-jenk .
-                docker build -t prenticed103/nginx-jenk ./nginx
+                docker build -t prenticed103/flask-jenk:latest -t prenticed103/flask-jenk:v${BUILD_NUMBER} .
+                docker build -t prenticed103/nginx-jenk:latest -t prenticed103/nginx-jenk:v${BUILD_NUMBER} ./nginx
                 '''
             }
 
@@ -34,8 +34,10 @@ pipeline {
 
             steps {
                 sh '''
-                docker push prenticed103/flask-jenk 
-                docker push prenticed103/nginx-jenk 
+                docker push prenticed103/flask-jenk:latest
+                docker push prenticed103/nginx-jenk:v$:{BUILD_NUMBER}
+                docker push prenticed103/flask-jenk:latest
+                docker push prenticed103/nginx-jenk:v$:{BUILD_NUMBER}
                 '''
             }
   }
