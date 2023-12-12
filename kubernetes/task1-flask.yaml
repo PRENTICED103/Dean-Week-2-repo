@@ -9,7 +9,7 @@ spec:
   - name: con-task1
     image: prenticed103/task1kube
     ports:
-    - container port: 5500
+    - containerPort: 5500
 ---
 apiVersion: v1
 kind: Service
