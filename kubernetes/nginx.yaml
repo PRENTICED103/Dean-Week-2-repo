@@ -21,26 +21,23 @@ metadata:
   labels:
     app: nginxlabel
 spec:
-spec:
   volumes:
   - name: nginx-volume
     configMap:
       name: nginx-config
   containers:
   - name: nginx
-    image: mginx:latest
+    image: nginx:latest
     ports:
     - container port: 80
     volumeMounts:
     - name: nginx-volume
-      mountPath: /etc/nginx
+      mountPath: /etc/nginx/
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
-  labels:
-    app:  label1
 spec: 
   type: LoadBalancer
   selector:  
