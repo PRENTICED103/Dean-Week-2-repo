@@ -47,7 +47,7 @@ spec:
         volumeMounts:
         - name: nginx-volume
           mountPath: /etc/nginx/
-   ---
+---
 apiVersion: v1
 kind: Service
 metadata:
