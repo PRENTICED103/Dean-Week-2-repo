@@ -1,14 +1,12 @@
 pipeline {
-
     agent any
-
     stages {
       stage('Init') {
             steps {
                 script {
                     if (env.GIT_BRANCH == "origin/main")  {
                         sh '''
-                        kubectl create namespace prod || echo "Namespace prod alreday exists"
+                        kubectl create namespace prod || echo "Namespace prod already exists"
                         '''
                      } else if (env.GIT_BRANCH == "origin/dev")  {
                         sh '''
@@ -33,7 +31,7 @@ pipeline {
                         sh '''
                         docker build -t prenticed103/flask-jenk:latest -t prenticed103/flask-jenk:dev-v${BUILD_NUMBER} .
                         '''
-                        } else {
+                     } else {
                         sh '''
                          'echo "Branch not recognised"'
                          '''
@@ -42,8 +40,7 @@ pipeline {
                 }
                         }
 
-  stage('Push') {
-
+        stage('Push') {
             steps {
                 if (env.GIT_BRANCH == "origin/main")  {
                 sh '''
@@ -53,7 +50,7 @@ pipeline {
                 } else if (env.GIT_BRANCH == "origin/dev")  {  
                 sh '''
                 docker push prenticed103/flask-jenk:latest
-                docker push prenticed103/flask-jenk:prod-v${BUILD_NUMBER}
+                docker push prenticed103/flask-jenk:dev-v${BUILD_NUMBER}
                 '''
                } else {
                 sh '''
@@ -62,19 +59,18 @@ pipeline {
                      }
                      }
             }
-          stage('Deploy') {
-
+        stage('Deploy') {
             steps {
                 if (env.GIT_BRANCH == "origin/main")  {
                 sh '''
                 kubectl apply -n prod -f ./kubernetes
-                kubectl set image deployment/flask-deployment task1=prenticed103/flask-jenk:prod-v${BUILD_NUMBER} - n prod
+                kubectl set image deployment/flask-deployment task1=prenticed103/flask-jenk:prod-v${BUILD_NUMBER} -n prod
                 '''
             }
                 if (env.GIT_BRANCH == "origin/dev")  {
                 sh '''
                 kubectl apply -n dev -f ./kubernetes
-                kubectl set image deployment/flask-deployment task1=prenticed103/flask-jenk:dev-v${BUILD_NUMBER} - n dev
+                kubectl set image deployment/flask-deployment task1=prenticed103/flask-jenk:dev-v${BUILD_NUMBER} -n dev
                 '''
              } else {
                 sh '''
@@ -84,7 +80,7 @@ pipeline {
             } 
         }  
   
-stage('Clean Up') {
+        stage('Clean Up') {
             steps 
             {
                 sh '''
