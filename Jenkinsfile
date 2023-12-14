@@ -21,7 +21,7 @@ pipeline {
                     }
             }
                 }
-
+      }
         stage('Build') {
             steps {
                 script {
@@ -62,8 +62,7 @@ pipeline {
                      }
                      }
             }
-  }
-        stage('Deploy') {
+          stage('Deploy') {
 
             steps {
                 if (env.GIT_BRANCH == "origin/main")  {
@@ -81,17 +80,19 @@ pipeline {
                 sh '''
                 'echo "Branch not recognised"
                 '''
-             }
+                   }
             } 
         }  
-}     
-
+  
 stage('Clean Up') {
-            steps {
+            steps 
+            {
                 sh '''
                 docker system prune -f
                 '''  
-                            }
-         }
-  }
+            }
+                 }
+  
+}
+}
         
