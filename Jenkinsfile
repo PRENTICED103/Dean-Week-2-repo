@@ -27,7 +27,7 @@ pipeline {
                         sh '''
                         docker build -t prenticed103/flask-jenk:latest -t prenticed103/flask-jenk:prod-v${BUILD_NUMBER} .
                         '''
-                     } else if (env.GIT_BRANCH == "origin/main")  {
+                     } else if (env.GIT_BRANCH == "origin/dev")  {
                         sh '''
                         docker build -t prenticed103/flask-jenk:latest -t prenticed103/flask-jenk:dev-v${BUILD_NUMBER} .
                         '''
