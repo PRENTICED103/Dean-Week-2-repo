@@ -16,7 +16,7 @@ pipeline {
                         '''
                         } else {
                         sh '''
-                         'echo "Branch not recognised"
+                         'echo "Branch not recognised"'
                          '''
                     }
             }
@@ -35,7 +35,7 @@ pipeline {
                         '''
                         } else {
                         sh '''
-                         'echo "Branch not recognised"
+                         'echo "Branch not recognised"'
                          '''
                     }
             }
@@ -57,7 +57,7 @@ pipeline {
                 '''
                } else {
                 sh '''
-                'echo "Branch not recognised"
+                'echo "Branch not recognised"'
                 '''
                      }
                      }
@@ -78,7 +78,7 @@ pipeline {
                 '''
              } else {
                 sh '''
-                'echo "Branch not recognised"
+                'echo "Branch not recognised"'
                 '''
                    }
             } 
