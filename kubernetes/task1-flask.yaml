@@ -30,11 +30,11 @@ kind: Service
 metadata:
   name: flask-app
   labels:
-    app:  task1
+    app: task1
 spec: 
   type: ClusterIP
   selector:  
-    app:  label1 
+    app: task1
   ports:
   - protocol: TCP
     port:  5500
