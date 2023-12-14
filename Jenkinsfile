@@ -42,6 +42,7 @@ pipeline {
 
         stage('Push') {
             steps {
+                script {
                 if (env.GIT_BRANCH == "origin/main")  {
                 sh '''
                 docker push prenticed103/flask-jenk:latest
@@ -59,8 +60,10 @@ pipeline {
                      }
                      }
             }
+        }
         stage('Deploy') {
-            steps {
+              steps {
+                script {
                 if (env.GIT_BRANCH == "origin/main")  {
                 sh '''
                 kubectl apply -n prod -f ./kubernetes
@@ -79,7 +82,7 @@ pipeline {
                    }
             } 
         }  
-  
+        }
         stage('Clean Up') {
             steps 
             {
